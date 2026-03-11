@@ -1,0 +1,54 @@
+Von KI erstellter und von Hand verbesserter Mermaid Code:
+
+
+
+---
+config:
+  layout: dagre
+---
+flowchart TB
+    Start(["Start"]) --> Startspieler_Frage{"Startspieler?"}
+    Startspieler_Frage -- Ja --> S_BraucheStiche{"Brauche Stiche?"}
+    S_BraucheStiche -- Ja --> S_NurNochEinStich{"Nur noch ein Stich benötigt?"}
+    S_NurNochEinStich -- Ja --> S_TrumpfAufHand{"Trumpf auf der Hand?"}
+    S_TrumpfAufHand -- Ja --> S_PlayHighTrump["Spiele höchste Trumpf Karte"]
+    S_TrumpfAufHand -- Nein --> S_PlayHighNonTrump["Spiele höchste nicht Trumpf Karte"]
+    S_NurNochEinStich -- Nein --> S_NurTrumpfHand{"Nur noch Trump auf der Hand?"}
+    S_NurTrumpfHand -- Ja --> S_PlayHighTrump2["Spiele höchste Trumpf Karte"]
+    S_NurTrumpfHand -- Nein --> S_PlayHighNonTrump2["Spiele höchste nicht Trumpf Karte"]
+    S_BraucheStiche -- Nein --> S_NurTrumpfHand2{"Nur noch Trump auf der Hand?"}
+    S_NurTrumpfHand2 -- Ja --> S_PlayLowTrump["Spiele niedrigste Trumpf Karte"]
+    S_NurTrumpfHand2 -- Nein --> S_PlayLowNonTrump["Spiele niedrigste nicht Trumpf Karte"]
+    Startspieler_Frage -- Nein --> KannBedienen{"Kann bedienen?"}
+    KannBedienen -- Ja --> B_BraucheStiche{"Brauche Stiche?"}
+    B_BraucheStiche -- Ja --> B_NurNochEinStich{"Nur noch ein Stich benötigt?"}
+    B_NurNochEinStich -- Ja --> B_TrumpfAufHand{"Trumpf auf der Hand?"}
+    B_TrumpfAufHand -- Ja --> B_PlayHighTrump["Spiele höchste Trumpf Karte"]
+    B_TrumpfAufHand -- Nein --> B_KannGewinnen{"Kann Stich gewinnen?"}
+    B_KannGewinnen -- Ja --> B_PlayHighWin["Spiele höchste gewinnende Karte"]
+    B_KannGewinnen -- Nein --> B_MehrAls1{"Mehr als 1 Karte Wert > 10?"}
+    B_MehrAls1 -- Ja --> B_Play2ndHigh["Spiele 2. höchste Karte"]
+    B_MehrAls1 -- Nein --> B_PlayLow["Spiele niedrigste Karte"]
+    B_NurNochEinStich -- Nein --> B_NurTrumpfHand{"Nur noch Trump auf der Hand?"}
+    B_NurTrumpfHand -- Ja --> B_PlayLow
+    B_NurTrumpfHand -- Nein --> B_PlayHighWin3["Spiele niedrigste gewinnende Karte"]
+    B_BraucheStiche -- Nein --> B_NurTrumpfHand2{"Nur noch Trump auf der Hand?"}
+    B_KannVerlieren{"Kann Stich verlieren?"} -- Ja --> B_PlayHighLose["Spiele höchste verlierende Karte"]
+    B_KannVerlieren -- Nein --> B_PlayHigh["Spiele höchste nicht Karte"]
+    KannBedienen -- Nein --> NB_BraucheStiche{"Brauche Stiche?"}
+    NB_BraucheStiche -- Ja --> NB_NurNochEinStich{"Nur noch ein Stich benötigt?"}
+    NB_NurNochEinStich -- Ja --> NB_PlayHighWin["Spiele höchste gewinnende Karte"]
+    NB_NurNochEinStich -- Nein --> NB_OhneTrumpf{"Kann ohne Trumpf gewinnen?"}
+    NB_OhneTrumpf -- Ja --> NB_PlayLowWinNonTrump["Spiele niedrigste gewinnende nicht Trumpf Karte"]
+    NB_OhneTrumpf -- Nein --> NB_MitTrump{"Kann mit Trump gewinnen?"}
+    NB_MitTrump -- Ja --> NB_PlayLowWinTrump["Spiele niedrigste gewinnende Trumpf Karte"]
+    NB_MitTrump -- Nein --> NB_PlayHighNonWin["Spiele niedrigste Karte"]
+    NB_BraucheStiche -- Nein --> NB_KannVerlieren{"Kann verlieren?"}
+    NB_KannVerlieren -- Nein --> NB_TrumpfAufHand{"Trumpf auf der Hand?"}
+    NB_TrumpfAufHand -- Ja --> NB_PlayLowTrump["Spiele höchste Trumpf Karte"]
+    NB_TrumpfAufHand -- Nein --> NB_PlayLow["Spiele höchste Karte"]
+    NB_KannVerlieren -- Ja --> NB_MitTrumpVerlieren{"Kann mit Trumpf verlieren?"}
+    NB_MitTrumpVerlieren -- Ja --> NB_PlayHighLoseTrump["Spiele höchste verlierende Trumpf Karte"]
+    NB_MitTrumpVerlieren -- Nein --> NB_PlayHighLoseNonTrump["Spiele höchste verlierende nicht Trumpf Karte"]
+    B_NurTrumpfHand2 -- Nein --> B_PlayLowTrump["Spiele höchste nicht Trumpf Karte"]
+    B_NurTrumpfHand2 -- Ja --> B_KannVerlieren
